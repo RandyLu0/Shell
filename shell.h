@@ -7,4 +7,6 @@ char ** parse_line();
 
 char * trim();
 
+void exec();
+
 #endif
