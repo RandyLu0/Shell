@@ -79,7 +79,7 @@ int main(){
 
 		buffer[strcspn(buffer,"\n")]='\0';
 
-		if(strcmp(buffer, "quit") == 0){
+		if(strcmp(buffer, "exit") == 0){
 			printf("\nEXITED SHELL\n");
 			break;
 		}
