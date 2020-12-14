@@ -8,83 +8,101 @@
 #include <errno.h>
 
 char buffer[256];
-char *command[10];
 
 void print_array(char ** input){
-	int i = 1;
-	printf("0) %s\n",input[0]);
-	while(1){
-		printf("%d) %s\n",i,input[i]);
-		i++;
-		if(input[i]==NULL){
-			printf("%d) %s\n",i,input[i]);
-			break;
-		}
-	}
+        int i = 1;
+        printf("0) %s\n",input[0]);
+        while(1){
+                printf("%d) %s\n",i,input[i]);
+                i++;
+                if(input[i]==NULL){
+                        printf("%d) %s\n",i,input[i]);
+                        break;
+                }
+        }
 }
 
-char ** parse_args(char * line){
-        char **args = command;
+char ** parse_args(char * line, char * d){
+        char **args = malloc(sizeof(char *));
         char *token;
         char *p;
         p = line;
         int counter = 0;
 
         while(p){
-                token = strsep(&p," ");
-		args[counter] = token;
+                token = strsep(&p,d);
+                args[counter] = malloc(sizeof(char));
+                args[counter] = token;
                 counter++;
         }
         args[counter] = NULL;
-        return command;
+        return args;
 }
 
 void cleanF(){
 
-	int i = 0;
-	for(i = 0;i<256;i++){
-		buffer[i]='\0';
-	}
-	for(i=0;i<10;i++){
-		command[i]=NULL;
-	}
+        int i = 0;
+        for(i = 0;i<256;i++){
+                buffer[i]='\0';
+        }
 }
 
 
-int run(char * input){
+void run(char * input){
 
-	char ** args = parse_args(input);
-	print_array(args);
-	int f;
-	f=fork();
+        char ** args = parse_args(input," ");
 
-	int e = 0;
+        if(strcmp(args[0],"cd")==0){
+                chdir(args[1]);
+        }
 
-	if(f==0){
-		e = execvp(args[0],args);
-	}
+        else if(strcmp(args[0],"exit")==0){
+                exit(0);
+                exit(0);
+        }
 
-	else{
-		wait(NULL);
-	}
+        else{
+                int f;
+                f=fork();
 
-	cleanF();
-	return 0;
+                int e = 0;
+
+                if(f==0){
+                        e = execvp(args[0],args);
+                        if(e==-1){
+                                exit(errno);
+                        }
+                }
+
+                else{
+                        wait(NULL);
+                }
+        }
 }
+
 
 int main(){
-	while(1){
-		printf("$");
-		fgets(buffer, sizeof(buffer), stdin);
+        char wd[256];
+        while(1){
+                getcwd(wd,256);
+                printf("LIXA:%s$ ",wd);
+                fgets(buffer, sizeof(buffer), stdin);
 
-		buffer[strcspn(buffer,"\n")]='\0';
+                buffer[strcspn(buffer,"\n")]='\0';
 
-		if(strcmp(buffer, "exit") == 0){
-			printf("\nEXITED SHELL\n");
-			break;
-		}
+                char **commandList = parse_args(buffer,";");
 
-		run(buffer);
-	}
-	return 0;
+                //print_array(commandList);
+
+                int counter;
+                for(counter=0;commandList[counter]!=NULL;counter++){
+                        run(commandList[counter]);
+                }
+
+                free(commandList);
+                cleanF();
+        }
+
+
+        return 0;
 }
