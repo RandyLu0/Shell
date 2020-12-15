@@ -80,6 +80,19 @@ void run(char * input){
         }
 }
 
+int directions(char * input){
+        int i;
+        for (i = 0; input[i]; i++){
+                if (input[i] == '>')
+                        return 1;
+                if (input[i] == '<')
+                        return 2;
+                if (input[i] == '|')
+                        return 3;
+        }
+        return 0;
+}
+
 
 int main(){
         char wd[256];
@@ -94,13 +107,45 @@ int main(){
 
                 //print_array(commandList);
 
-                int counter;
-                for(counter=0;commandList[counter]!=NULL;counter++){
-                        run(commandList[counter]);
+                int i;
+                for (i = 0; commandList[i]; i++){
+                        int s = directions(commandList[i]);
+
+                        if (s == 1){
+                                char * line = commandList[i];
+                                char * command = malloc(sizeof(char));
+                                char * filename = malloc(sizeof(char));
+                                char ** split = parse_args(line,">");
+                                command = split[0];
+                                filename = split[1];
+                                printf("%s\n",command);
+
+                                int fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0640);
+                                if (fd == -1){
+                                        printf("Error: %s\n", strerror(errno));
+                                        return -1;
+                                }
+                                int backup_stdout = dup(STDOUT_FILENO);
+                                dup2(fd, STDOUT_FILENO);
+                                run(command);
+                                dup2(backup_stdout, STDOUT_FILENO);
+                                close(fd);
+                        }
+
+                        if (s == 0){
+                                int counter;
+                                for(counter=0;commandList[counter]!=NULL;counter++){
+                                        run(commandList[counter]);
+                                }
+                        }
+
                 }
 
                 free(commandList);
                 cleanF();
+
+
+
         }
 
 
