@@ -46,7 +46,6 @@ int main(){
                                 char ** split = parse_args(line,">");
                                 command = split[0];
                                 filename = split[1];
-                                printf("%s\n",command);
 
                                 int fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0640);
                                 if (fd == -1){
