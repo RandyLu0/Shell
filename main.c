@@ -59,6 +59,27 @@ int main(){
                                 dup2(backup_stdout, STDOUT_FILENO);
                                 close(fd);
                         }
+                        
+                        if (s == 2){
+                                char * line = commandList[i];
+                                char * command = malloc(sizeof(char));
+                                char * filename = malloc(sizeof(char));
+                                char ** split = parse_args(line,"<");
+                                command = split[0];
+                                filename = split[1];
+
+                                int fd = open(filename, O_RDONLY);
+                                if (fd == -1){
+                                printf("Error: %s\n", strerror(errno));
+                                return -1;
+                                }
+
+                                int backup_stdout = dup(STDOUT_FILENO);
+                                dup2(fd, STDIN_FILENO);
+                                run(command);
+                                 dup2(backup_stdout, STDIN_FILENO);
+                                close(fd);
+                        }
 
                         if (s == 0){
                                 int counter;
