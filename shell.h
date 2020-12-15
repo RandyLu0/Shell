@@ -1,12 +1,12 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-int count_tokens();
+char ** parse_args(char * line, char * d);
 
-char ** parse_line();
+void CleanF();
 
-char * trim();
+void run(char * input);
 
-void exec();
+int directions(char * input);
 
 #endif
