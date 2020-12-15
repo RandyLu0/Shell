@@ -6,6 +6,7 @@
 
 #include <fcntl.h>
 #include <errno.h>
+#include "shell.h"
 
 char buffer[256];
 

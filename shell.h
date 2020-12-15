@@ -3,7 +3,7 @@
 
 char ** parse_args(char * line, char * d);
 
-void CleanF();
+void cleanF();
 
 void run(char * input);
 
