@@ -105,8 +105,6 @@ int main(){
 
                 char **commandList = parse_args(buffer,";");
 
-                //print_array(commandList);
-
                 int i;
                 for (i = 0; commandList[i]; i++){
                         int s = directions(commandList[i]);
