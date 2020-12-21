@@ -27,7 +27,7 @@ int main(){
         char wd[256];
         while(1){
                 getcwd(wd,256);
-                printf("LIXA:%s$ ",wd);
+                printf("RGD:%s$ ",wd);
                 fgets(buffer, sizeof(buffer), stdin);
 
                 buffer[strcspn(buffer,"\n")]='\0';
