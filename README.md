@@ -20,9 +20,9 @@ TNPG: RGD
 
 ---
 
-### Files and Function Headers 
+### Files and Function Headers: 
 #### shell.c
-    - Handles all the functions that is needed for the shell to work
+    * Handles all the functions that is needed for the shell to work
     ```
     /*================ char** parse_args() ================
     Inputs: char* line
