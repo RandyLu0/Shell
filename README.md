@@ -33,7 +33,9 @@ TNPG: RGD
     /*================ void run() ================
     Inputs: char* input
     
-    Takes a command parsed by whitespace. If the command is cd when program use chdir(). If the command is exit then program use exit(). Everything else the program forks and the child executes the command.
+    Takes a command parsed by whitespace. If the command is cd when program use chdir(). 
+    If the command is exit then program use exit(). Everything else the program forks and 
+    the child executes the command.
     =======================================================*/
     
     '''
