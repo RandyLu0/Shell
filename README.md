@@ -11,7 +11,7 @@ TNPG: RGD
 
 ### Bugs
 - There cannot be whitespace before and after the semicolon and direction operators
-    -Ex: $ls<example.txt //this will work
+    - Ex: $ls<example.txt //this will work
          $ls < example.txt //this will not work
 
 ### Files and Function Headers 
