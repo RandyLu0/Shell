@@ -10,7 +10,7 @@ TNPG: RGD
 ### Attempted:
 
 ### Bugs
--There cannot be whitespace before and after the semicolon and direction operators
+- There cannot be whitespace before and after the semicolon and direction operators
     -Ex: $ls<example.txt //this will work
          $ls < example.txt //this will not work
 
