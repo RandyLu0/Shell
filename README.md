@@ -13,7 +13,7 @@ TNPG: RGD
 
 ---
 
-### Bugs
+### Bugs:
 - There cannot be whitespace before and after the semicolon and direction operators
     - $ls<example.txt      this will work
     - $ls < example.txt    this will not work
