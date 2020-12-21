@@ -39,6 +39,16 @@ TNPG: RGD
     the child executes the command.
     =======================================================*/
     
+    /*================ int directions(char* input) ================
+    Inputs: char* input
+        
+    Returns an int
+        - 0     Normal Command
+        - 1     Command has a >
+        - 2     Command has a <
+        - 3     Command has a |
+    =======================================================*/
+    
     '''
     
 #### main.c
