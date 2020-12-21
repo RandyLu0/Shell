@@ -23,7 +23,7 @@ TNPG: RGD
 ### Files and Function Headers 
 #### shell.c
     * Handles all the functions that is needed for the shell to work
-    '''
+    ```
     /*================ char** parse_args() ================
     Inputs: char* line
             char *d
@@ -53,19 +53,16 @@ TNPG: RGD
         - 2     Command has a <
         - 3     Command has a |
     =======================================================*/
-    
-    '''
+    ```
     
 #### main.c
     * The core of the shell that puts all the functions together to form a working shell
-    '''
+    ```
     /*================ int main() ================
     Inputs: N/A
           
     Prints the input request, reads the command, and then execute it
     =======================================================*/
-    
-    
-    '''
+    ```
 
   
