@@ -80,6 +80,29 @@ int main(){
                                  dup2(backup_stdin, STDIN_FILENO);
                                 close(fd);
                         }
+                        
+                        if (s == 3){
+                                char * line = commandList[i];
+                                char ** split = parse_args(line,"|");
+                                char ** command1 = parse_args(split[0], " ");
+                                char ** command2 = parse_args(split[1], " ");
+
+                                int p[2];
+                                pipe(p);
+                                int f = fork();
+                                if(f==0){
+                                        dup2(p[1], STDOUT_FILENO);
+                                        close(p[0]);
+                                        close(p[1]);
+                                        execvp(command1[0], command1);
+                                }
+                                else {
+                                dup2(p[0], STDIN_FILENO);
+                                close(p[0]);
+                                close(p[1]);
+                                execvp(command2[0], command2);
+                                }
+                        }
 
                         if (s == 0){
                                 int counter;
