@@ -74,10 +74,10 @@ int main(){
                                 return -1;
                                 }
 
-                                int backup_stdout = dup(STDOUT_FILENO);
+                                int backup_stdin = dup(STDOUT_FILENO);
                                 dup2(fd, STDIN_FILENO);
                                 run(command);
-                                 dup2(backup_stdout, STDIN_FILENO);
+                                 dup2(backup_stdin, STDIN_FILENO);
                                 close(fd);
                         }
 
