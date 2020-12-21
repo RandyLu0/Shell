@@ -30,13 +30,13 @@ TNPG: RGD
     Returns an array of string split by the d
     =======================================================*/
     
-    /*================ void cleanF() ================
+    /*================== void cleanF() ====================
     Inputs: N/A
         
     Cleans the buffer by replacing all elements of the char array with a NULL character
     =======================================================*/
     
-    /*================ void run() ================
+    /*===================== void run() =====================
     Inputs: char* input
     
     Takes a command parsed by whitespace. If the command is cd when program use chdir(). 
@@ -44,7 +44,7 @@ TNPG: RGD
     the child executes the command.
     =======================================================*/
     
-    /*================ int directions(char* input) ================
+    /*============ int directions(char* input) ============
     Inputs: char* input
         
     Returns an int
@@ -58,7 +58,7 @@ TNPG: RGD
 #### main.c
 * The core of the shell that puts all the functions together to form a working shell
     ```
-    /*================ int main() ================
+    /*================ int main() ==========================
     Inputs: N/A
           
     Prints the input request, reads the command, and then execute it
